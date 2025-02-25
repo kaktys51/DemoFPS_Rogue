@@ -7,6 +7,9 @@
 
 class USkeletalMeshComponent;
 class UCameraComponent;
+class UInputMappingContext;
+class UInputAction;
+struct FInputActionValue;
 
 UCLASS()
 class DEMOFPS_API ACustomFPCaracter : public ACharacter
@@ -29,6 +32,28 @@ public:
 
 	//UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 	//USkeletalMeshComponent* MashHands;
+	
+
+	//////////////////////////////////////////////////////////////////////////////
+	//Movement context
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	UInputMappingContext* PlayerMappingContext;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	UInputAction* MoveAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	UInputAction* LookAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	UInputAction* JumpAction;
+
+
+	void Move(const FInputActionValue& Value);
+
+	/** Called for looking input */
+	void Look(const FInputActionValue& Value);
 
 	virtual void Tick(float DeltaTime) override;
 
