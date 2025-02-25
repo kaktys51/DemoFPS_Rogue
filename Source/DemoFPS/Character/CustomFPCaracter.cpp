@@ -6,9 +6,13 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "RogueMovementComponent.h"
 
-ACustomFPCaracter::ACustomFPCaracter()
+ACustomFPCaracter::ACustomFPCaracter(const FObjectInitializer& ObjectInitializer)
+	:Super(ObjectInitializer.SetDefaultSubobjectClass<URogueMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
+	RogueMovementComponent = Cast<URogueMovementComponent>(GetCharacterMovement());
+
 	PrimaryActorTick.bCanEverTick = true;
 
 	FirstPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
@@ -35,4 +39,3 @@ void ACustomFPCaracter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
-

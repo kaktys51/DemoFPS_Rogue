@@ -14,10 +14,13 @@ class DEMOFPS_API ACustomFPCaracter : public ACharacter
 	GENERATED_BODY()
 
 public:
-	ACustomFPCaracter();
+	ACustomFPCaracter(const FObjectInitializer& ObjectInitializer);
 
 protected:
 	virtual void BeginPlay() override;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = Movement)
+	class URogueMovementComponent* RogueMovementComponent;
 
 public:	
 
